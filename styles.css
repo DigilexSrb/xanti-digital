@@ -1104,6 +1104,198 @@ h1, h2, h3, h4 {
 }
 .cta-card--auto p + p { margin-top: -8px; }
 
+/* ---- page variants (layouts taken from the second Figma frame "xanti digitali_ 2") ---- */
+/* hero A: left-aligned glass card over the wave */
+.hero--wave {
+  padding: 96px 0 150px;
+  text-align: left;
+  overflow: hidden;
+}
+.hero-wave-bg {
+  position: absolute;
+  top: -500px;
+  right: -40px;
+  width: min(1420px, 82%);
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-card {
+  max-width: 600px;
+  padding: 38px 40px 40px;
+  border: 3px solid transparent;
+  border-radius: 21.5px;
+  background:
+    linear-gradient(rgba(246, 245, 252, 0.86), rgba(246, 245, 252, 0.86)) padding-box,
+    linear-gradient(104deg, #fdfcff 0%, #efebff 8%, #e0d4ff 20%, #d7c5ff 43%, #d1bdff 59%, #d5c1ff 83%, #dfd1ff 100%) border-box;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.hero--wave h1,
+.hero--split h1 {
+  max-width: none;
+  margin: 0;
+  font-size: clamp(34px, 3.4vw, 52px);
+  line-height: 1.12;
+  letter-spacing: -0.026em;
+}
+.hero--wave .hero-sub,
+.hero--split .hero-sub {
+  max-width: none;
+  margin: 16px 0 24px;
+}
+.hero--wave .pill,
+.hero--split .pill { margin-bottom: 18px; }
+.hero--wave .pill { background: #fff; }
+
+/* hero B: text left, illustration right */
+.hero--split {
+  padding: 90px 0 90px;
+  text-align: left;
+}
+.hero-split-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 70px;
+  align-items: center;
+}
+.hero--split .hero-kicker { margin: 14px 0 0; max-width: none; }
+.hero-figure {
+  justify-self: end;
+  width: min(397px, 100%);
+  aspect-ratio: 794 / 826;
+  background: url('assets/illustration.png') center / contain no-repeat;
+  filter: drop-shadow(0 30px 50px rgba(116, 51, 255, 0.22));
+}
+
+/* hero C: centred text in a soft gradient panel */
+.hero--panel { padding: 30px 0 60px; }
+.hero-panel {
+  position: relative;
+  overflow: hidden;
+  padding: 84px 40px 96px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, #f7f5ff 0%, #f1ebff 45%, #d9c9fd 100%);
+}
+.hero-panel::after {
+  content: '';
+  position: absolute;
+  right: -90px;
+  bottom: -150px;
+  width: 520px;
+  aspect-ratio: 790 / 524;
+  background: url('assets/geo-swirl.png') center / contain no-repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.hero-panel > * { position: relative; z-index: 1; }
+.hero--panel .pill { background: #fff; }
+.hero--panel h1 { margin-top: 0; }
+
+/* numbered rows (process rows of the second frame) */
+.row-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 13px;
+  margin-top: 30px;
+  text-align: left;
+}
+.row-list--single { grid-template-columns: 1fr; max-width: 880px; margin-left: auto; margin-right: auto; }
+.row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 22px;
+  border: 3px solid transparent;
+  border-radius: 21.5px;
+  background:
+    linear-gradient(#f6f5fc, #f6f5fc) padding-box,
+    linear-gradient(104deg, #f9f7ff 0%, #efebff 8%, #e0d4ff 20%, #d7c5ff 43%, #d1bdff 59%, #d5c1ff 83%, #dfd1ff 100%) border-box;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.05em;
+  color: var(--ink-2);
+}
+.row-num {
+  flex: 0 0 auto;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* big-number feature cards */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+  margin-top: 30px;
+  text-align: left;
+}
+.feature {
+  padding: 26px 28px 30px;
+  border: 3px solid transparent;
+  border-radius: 21.5px;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(104deg, #fdfcff 0%, #efebff 8%, #e0d4ff 20%, #d7c5ff 43%, #d1bdff 59%, #d5c1ff 83%, #dfd1ff 100%) border-box;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+}
+.feature-num {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 44px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--purple-soft);
+}
+
+/* full-width tinted band */
+.section--tint {
+  margin: 30px 0;
+  padding: 84px 0;
+  background: var(--purple-25);
+}
+.band-text {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+.band-text p {
+  margin-top: 16px;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.05em;
+  color: var(--ink-3);
+}
+.band-text p.band-lead {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .hero--wave { padding: 60px 0 90px; }
+  .hero-wave-bg { width: 150%; right: -45%; top: -260px; opacity: 0.55; }
+  .hero-card { padding: 26px 22px 28px; }
+  .hero-split-grid { grid-template-columns: 1fr; gap: 36px; }
+  .hero--split { padding: 56px 0 50px; }
+  .hero-figure { justify-self: center; width: min(300px, 80%); }
+  .hero-panel { padding: 54px 20px 70px; border-radius: 22px; }
+  .hero-panel::after { width: 300px; right: -70px; bottom: -90px; }
+  .row-list { grid-template-columns: 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .feature-num { font-size: 36px; margin-bottom: 12px; }
+  .section--tint { padding: 54px 0; }
+}
+
 /* home: whole service card is a link */
 a.service-arrow::after {
   content: '';
