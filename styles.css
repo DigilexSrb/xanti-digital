@@ -226,6 +226,54 @@ h1, h2, h3, h4 {
 }
 .main-nav a:hover { color: var(--purple); }
 
+/* Usluge dropdown (desktop: on hover / keyboard focus) */
+.nav-item { position: relative; display: flex; }
+.sub-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  width: 268px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid var(--purple-100);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(116, 51, 255, 0.16);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, -6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 10;
+}
+/* invisible bridge so the pointer can travel from the link to the panel */
+.sub-menu::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -16px;
+  height: 16px;
+}
+.nav-item:hover .sub-menu,
+.nav-item:focus-within .sub-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+.main-nav .sub-menu a {
+  display: block;
+  width: auto;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  border-radius: 10px;
+}
+.main-nav .sub-menu a:hover {
+  background: var(--purple-50);
+  color: var(--purple);
+}
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -1370,6 +1418,30 @@ a.service-arrow::after {
   .main-nav a:active {
     background: var(--purple-50);
     color: var(--purple);
+  }
+  .nav-item { flex-direction: column; }
+  .sub-menu,
+  .nav-item:hover .sub-menu,
+  .nav-item:focus-within .sub-menu {
+    position: static;
+    width: auto;
+    margin: 0 0 6px 16px;
+    padding: 0 0 0 10px;
+    background: none;
+    border: 0;
+    border-left: 2px solid var(--purple-100);
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .sub-menu::before { display: none; }
+  .main-nav .sub-menu a {
+    padding: 9px 12px;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink-3);
   }
   .nav-cta {
     width: auto;
