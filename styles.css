@@ -1,0 +1,988 @@
+/* ============ TOKENS ============ */
+:root {
+  --purple: #7433ff;
+  --purple-soft: #8268ed;
+  --purple-50: #f2efff;
+  --purple-25: #f7f5ff;
+  --purple-100: #ece4ff;
+  --ink: #231f20;
+  --ink-2: #373737;
+  --ink-3: #3d3d3d;
+  --ink-4: #606060;
+  --muted: rgba(0, 0, 0, 0.5);
+  --white: #ffffff;
+  --glass: rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.9);
+  --radius: 20px;
+  --radius-sm: 10px;
+  --container: 1248px; /* 1200 content column (Figma x 360-1560) + 24px side padding */
+  --tracking: -0.02em;
+}
+
+/* ============ RESET & BASE ============ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+}
+body {
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  color: var(--ink);
+  background: #fff;
+  line-height: 1.5;
+  letter-spacing: var(--tracking);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+ul {
+  list-style: none;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============ TYPOGRAPHY ============ */
+h1, h2, h3, h4 {
+  letter-spacing: var(--tracking);
+  color: var(--ink);
+}
+.section-title {
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.1;
+  font-weight: 500;
+}
+.section-title.center {
+  text-align: center;
+}
+.light { font-weight: 300; }
+.medium { font-weight: 500; }
+.semibold { font-weight: 600; }
+.accent { color: var(--purple); }
+.accent-soft { color: var(--purple-soft); }
+.muted {
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.muted.center { text-align: center; }
+.eyebrow {
+  color: var(--purple-soft);
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.eyebrow--purple {
+  color: var(--purple);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+/* ============ BUTTONS ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 500;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-sm {
+  padding: 10px 22px;
+  font-size: 14px;
+  border-radius: var(--radius-sm);
+}
+.btn-lg {
+  padding: 14px 22px 14px 32px;
+  font-size: 17px;
+}
+.btn-primary {
+  background: var(--purple);
+  color: #fff;
+}
+.btn-primary:hover { background: #5f1fec; transform: translateY(-1px); }
+
+.btn-outline {
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--purple);
+}
+.btn-outline:hover { background: var(--purple-50); }
+
+.btn-ghost-light {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.btn-ghost-light:hover { background: rgba(255,255,255,0.1); }
+
+/* Figma 7:178 circle 42px #8268ed + 7:183 arrow */
+.btn-arrow {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--purple-soft) url('assets/arrow3.svg') center / 10px 10px no-repeat;
+  flex-shrink: 0;
+}
+.btn-arrow--light {
+  background-color: #fff;
+  background-image: url('assets/arrow.svg');
+}
+
+/* Figma 7:174: 211x42 at y316 */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 211px;
+  height: 42px;
+  background: var(--purple-50);
+  color: var(--ink);
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+
+/* ============ HEADER ============ */
+/* Figma 7:66 — logo 7:77 (360,27 155x64), nav pill 7:188 (950,24 610x70) */
+.site-header {
+  position: relative;
+  z-index: 100;
+}
+.nav-wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.logo img {
+  width: 155px;
+  height: 64px;
+  max-width: none;
+}
+.nav-pill {
+  display: flex;
+  align-items: center;
+  width: 610px;
+  height: 70px;
+  padding: 0 30px 0 53px;
+  background: var(--purple-25);
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+.main-nav {
+  display: flex;
+  gap: 29px;
+}
+.main-nav a {
+  width: 64px;
+  padding-right: 1px;
+  text-align: right;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 54px;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+.nav-cta {
+  width: 145px;
+  height: 42px;
+  margin-left: 39px;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  border-radius: var(--radius-sm);
+}
+.main-nav a:hover { color: var(--purple); }
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+}
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  border-radius: 2px;
+}
+
+/* ============ TOP STAGE (hero + about + better-seo share one wave) ============ */
+.top-stage {
+  position: relative;
+}
+/* Wave: assets/wave-figma.webp is the rendered Figma export of group 19:128
+   (all effects baked in, no CSS filters). It covers frame x 0-1920, y 460-2629,
+   i.e. full width, and starts 968px above the "Bolji SEO" title (y 1428).
+   Anchor sits at the top of .better-seo (title is 80px below it). */
+.wave-anchor {
+  position: relative;
+  height: 0;
+  z-index: 0;
+  pointer-events: none;
+  container-type: inline-size;
+}
+.stage-wave {
+  position: absolute;
+  left: 0;
+  top: calc(80px - 968 / 1920 * 100cqw);
+  width: 100%;
+  max-width: none;
+  height: auto;
+  display: block;
+}
+.about .container,
+.better-seo .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============ HERO ============ */
+/* Figma (page y; hero starts at y118 under the header):
+   pill y316, title 7:110 y370 (810x154), sub 7:111 y518 (551x77), CTA 7:185 y612 (214x56) */
+.hero {
+  position: relative;
+  padding: 198px 0 113px;
+  text-align: center;
+}
+/* Cloud 13:267 — assets/hero-cloud.webp has every effect baked in (rotation 157deg, opacity .6,
+   progressive blur ~2px at the top -> ~20px at the bottom); parameters were fitted against the
+   Figma render. The asset covers frame x511-1393, y-112..903 (hero starts at y118). No CSS filters. */
+.hero-cloud {
+  position: absolute;
+  top: -230px;
+  left: calc(50% - 449px);
+  width: 882px;
+  height: 1015px;
+  background: url('assets/hero-cloud.webp') center / 100% 100% no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
+.hero h1 {
+  max-width: 810px;
+  margin: -1px auto 11px;
+  font-size: 64px;
+  line-height: 69px; /* measured line pitch in the Figma render */
+  font-weight: 400;
+  letter-spacing: -0.014em;
+}
+.hero h1 .semibold { font-weight: 600; letter-spacing: -0.021em; }
+.hero-sub {
+  color: var(--ink-2);
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -1.03px;
+  max-width: 551px;
+  margin: 0 auto 16px;
+}
+.hero .btn-lg {
+  width: 214px;
+  height: 56px;
+  padding: 0 6px 0 33px;
+  justify-content: space-between;
+  gap: 0;
+  background: transparent;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+/* ============ ABOUT ============ */
+.about {
+  padding: 60px 0 310px; /* Figma: about text ends y1038, Better SEO section starts y1348 */
+  text-align: center;
+}
+/* Figma: title 7:104 y841 (762x127), text 7:103 y986 (744x52) */
+.about-title {
+  font-size: 36px;
+  line-height: calc(127px / 3);
+  font-weight: 300;
+  letter-spacing: -0.026em;
+  max-width: 762px;
+  margin: 0 auto 18px;
+}
+.about-title .accent { color: var(--purple-soft); }
+.about-sub {
+  color: var(--ink-4);
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -1.03px;
+  max-width: 744px;
+  margin: 0 auto;
+}
+
+/* ============ BETTER SEO ============ */
+/* Figma: title 7:187 y1428, text 7:186 y1486 (606w), eyebrow 13:198 y1608,
+   text 13:197 y1639 (567w); process card starts at y2192 */
+.better-seo {
+  position: relative;
+  padding: 80px 0 397px;
+  z-index: 2;
+}
+.better-seo .section-title {
+  font-size: 42px;
+  line-height: 43px;
+  letter-spacing: -0.026em;
+}
+.better-seo .section-title .accent { color: var(--purple-soft); }
+.better-seo .muted {
+  color: var(--ink-2);
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -1.03px;
+  margin-top: 15px;
+}
+.better-seo .eyebrow {
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: -0.97px;
+  margin-bottom: 0;
+}
+.better-seo .eyebrow + .muted {
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -1.03px;
+  margin-top: 8px;
+  max-width: 567px;
+}
+.about {
+  position: relative;
+  z-index: 2;
+}
+.hero {
+  position: relative;
+  z-index: 2;
+}
+.better-grid {
+  position: relative;
+  z-index: 1;
+  max-width: 606px;
+  margin-left: 0;
+}
+.better-grid > div + div {
+  margin-top: 18px;
+}
+
+/* ============ PROCESS ============ */
+/* Figma: card 16:282 x360 y2192 1200x576; title 7:172 y2262 (2x40); intro 7:105 y2361 (643x78);
+   steps 13:248.. 212x235 at y2467, x 410/632/854/1076/1298 */
+.process {
+  position: relative;
+  z-index: 1;
+  padding: 60px 0 104px;
+}
+.process-card {
+  background: rgba(242, 239, 255, 0.6);
+  border-radius: var(--radius);
+  height: 576px;
+  padding: 70px 50px 0;
+}
+.process-card .section-title {
+  font-size: 36px;
+  line-height: 40px;
+  letter-spacing: -0.026em;
+}
+.process-intro {
+  max-width: 643px;
+  margin: 19px auto 28px;
+  color: var(--ink-4);
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -1.03px;
+}
+.process-steps {
+  display: flex;
+  gap: 10px;
+}
+/* 3px gradient stroke centred on the 212x235 rect edge (so the box is 215x238, pulled out 1.5px) */
+.step-card {
+  flex: 0 0 215px;
+  height: 238px;
+  margin: -1.5px;
+  padding: 18.5px 0 0 18.5px;
+  border: 3px solid transparent;
+  border-radius: 21.5px;
+  background:
+    linear-gradient(#faf9ff, #faf9ff) padding-box,
+    linear-gradient(104deg, #f9f7ff 0%, #efebff 8%, #e0d4ff 20%, #d7c5ff 43%, #d1bdff 59%, #d5c1ff 83%, #dfd1ff 100%) border-box;
+}
+.step-card:first-child { padding-left: 23.5px; }
+.step-card h3 {
+  color: var(--purple-soft);
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: -1px;
+  line-height: 43px;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+.step-card p {
+  margin-top: -4px;
+  font-size: 14px;
+  line-height: 23.8px;
+  letter-spacing: -0.04em;
+  color: #383838;
+}
+.step-card:nth-child(1) p { width: 173px; }
+.step-card:nth-child(2) p { width: 171px; }
+.step-card:nth-child(3) p { width: 172px; }
+.step-card:nth-child(4) p { width: 175px; }
+.step-card:nth-child(5) p { width: 168px; }
+
+/* ============ SERVICES ============ */
+/* Figma: title 7:116 y2952, intro 7:120 y3000 (594w), grid y3079: columns 393/394/393, rows 200, gap 10.
+   Text / arrow offsets inside each card are the per-card Figma values (they differ slightly per card). */
+.services {
+  position: relative;
+  padding: 80px 0 120px;
+}
+.section-head {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.services .section-title {
+  margin-top: -1px;
+  font-size: 36px;
+  line-height: 43px;
+  letter-spacing: -0.026em;
+}
+.section-head p {
+  max-width: 594px;
+  margin: 6px auto 27px;
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: -1.03px;
+}
+.services-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 393px 394px 393px;
+  grid-template-rows: 200px 200px 200px;
+  gap: 10px;
+}
+/* 3px gradient stroke centred on the card edge -> box grows 1.5px on every side */
+.service-card {
+  position: relative;
+  margin: -1.5px;
+  border: 3px solid transparent;
+  border-radius: 21.5px;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(104deg, #fdfcff 0%, #efebff 8%, #e0d4ff 20%, #d7c5ff 43%, #d1bdff 59%, #d5c1ff 83%, #dfd1ff 100%) border-box;
+}
+.service-card--tehnicki { grid-column: 1; grid-row: 1 / span 2; --tx: 25px; --ty: 26px; --py: 60px; --pw: 334px; --ax: 327px; --ay: 346px; }
+.service-card--onpage   { grid-column: 2; grid-row: 1;          --tx: 25px; --ty: 22px; --py: 57px; --pw: 352px; --ax: 332px; --ay: 138px; }
+.service-card--kons     { grid-column: 3; grid-row: 1;          --tx: 30px; --ty: 22px; --py: 52px; --pw: 340px; --ax: 327px; --ay: 134px; }
+.service-card--copy     { grid-column: 2; grid-row: 2 / span 2; --tx: 25px; --ty: 27px; --py: 59px; --pw: 331px; --ax: 328px; --ay: 344px; }
+.service-card--strat    { grid-column: 3; grid-row: 2;          --tx: 26px; --ty: 26px; --py: 60px; --pw: 345px; --ax: 327px; --ay: 136px; }
+.service-card--offpage  { grid-column: 1; grid-row: 3;          --tx: 25px; --ty: 24px; --py: 57px; --pw: 314px; --ax: 327px; --ay: 134px; }
+.service-card--lokalni  { grid-column: 3; grid-row: 3;          --tx: 25px; --ty: 24px; --py: 53px; --pw: 344px; --ax: 327px; --ay: 138px; }
+
+.service-card--onpage h3 { margin-left: -2px; }
+/* children are positioned from the Figma rect corner = 1.5px inside the border box */
+.service-card h3,
+.service-card p,
+.service-arrow {
+  position: absolute;
+}
+.service-card h3 {
+  left: calc(var(--tx) - 1.5px);
+  top: calc(var(--ty) - 1.5px);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 23px;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  color: var(--ink);
+}
+.service-card p {
+  left: calc(var(--tx) - 1.5px);
+  top: calc(var(--py) - 3px);
+  width: var(--pw);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -1.03px;
+  color: var(--ink-3);
+}
+.service-arrow {
+  left: calc(var(--ax) - 1.5px);
+  top: calc(var(--ay) - 1.5px);
+  width: 45.34px;
+  height: 45.34px;
+  border-radius: 50%;
+  background: var(--purple-100) url('assets/arrow.svg') center / 9.86px 9.86px no-repeat;
+}
+/* Purple card 16:271: background (gradient + glass swirl) is the Figma render of the rect, 398x414 */
+.service-card--accent {
+  border: 0;
+  background: url('assets/service-copy-bg.png') center / 100% 100% no-repeat;
+  margin: -2px;
+}
+.service-card--accent h3 { left: calc(var(--tx) + 2px); top: calc(var(--ty) + 2px); color: #fff; }
+.service-card--accent p { left: calc(var(--tx) + 2px); top: calc(var(--py) + 0.5px); color: #fff; }
+.service-card--accent .service-arrow {
+  left: calc(var(--ax) + 2px);
+  top: calc(var(--ay) + 2px);
+  background-color: #fff;
+}
+
+/* ============ GEO ============ */
+/* Figma: title 16:279 y4019, text 16:280 y4076 (481w), eyebrow 19:4 y4186, 19:5 y4233,
+   list 19:15 y4262 (x373, dots x360), closing text 19:19 y4365. Section starts at y3819. */
+.geo {
+  position: relative;
+  padding: 200px 0 239px;
+}
+/* Swirl 19:3: rendered Figma output (rotation + hue blend baked in), frame x840-1630, y3924-4448 */
+.geo-swirl {
+  position: absolute;
+  top: 105px;
+  left: calc(50% - 120px);
+  width: 790px;
+  height: 524px;
+  background: url('assets/geo-swirl.png') center / 100% 100% no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+.geo-content {
+  position: relative;
+  z-index: 2;
+}
+.geo-content .section-title {
+  font-size: 36px;
+  line-height: 43px;
+  letter-spacing: -0.026em;
+}
+.geo-content .section-title .accent { color: var(--purple-soft); }
+.geo-content .muted {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -1.03px;
+  color: var(--ink-3);
+}
+.geo-content .section-title + .muted {
+  max-width: 481px;
+  margin-top: 14px;
+}
+.geo-content .eyebrow {
+  margin: 17px 0 8px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 37px;
+  letter-spacing: -1.05px;
+  color: var(--purple);
+}
+.geo-content .eyebrow + .muted { line-height: 23px; }
+.dot-list {
+  margin: 5px 0 7px;
+}
+.dot-list li {
+  position: relative;
+  padding-left: 13px;
+  color: var(--ink-3);
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -1.03px;
+}
+.dot-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--purple-soft);
+}
+
+/* ============ FAQ ============ */
+/* Figma: card 19:58 x360 y4732 1200x591 #f7f5ff; title 19:47 y4802; dividers 19:23.. x410 1100w.
+   Row heights / text offsets per question are the Figma values (rows 48,48,48,48,48,52,52). */
+.faq {
+  padding: 80px 0 10px;
+}
+.faq-card {
+  background: var(--purple-25);
+  border-radius: var(--radius);
+  padding: 70px 50px 68.7px;
+}
+.faq-card .section-title {
+  font-size: 36px;
+  line-height: 43px;
+  letter-spacing: -0.026em;
+  margin-bottom: 19.3px;
+}
+.faq-card .section-title .accent { color: var(--purple-soft); }
+.faq-item { --row: 48px; --qy: 11.6px; --iy: 19.6px; }
+.faq-item:nth-of-type(1) { --qy: 12.2px; --iy: 22.6px; }
+.faq-item:nth-of-type(3) { --qy: 12.6px; }
+.faq-item:nth-of-type(4) { --qy: 10.6px; }
+.faq-item:nth-of-type(5) { --qy: 11.6px; --iy: 17.6px; }
+.faq-item:nth-of-type(6) { --row: 52px; --qy: 15.2px; --iy: 21.2px; }
+.faq-item:nth-of-type(7) { --row: 52px; --qy: 17.2px; --iy: 21.2px; }
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  height: var(--row);
+  padding-top: var(--qy);
+  border-bottom: 1px solid #a9a9aa;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: -1.05px;
+  color: #000;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+/* plus / minus 14x14 at the right end of the divider */
+.faq-item summary::before,
+.faq-item summary::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: calc(var(--iy) + 6.5px);
+  width: 14px;
+  height: 1px;
+  background: #000;
+}
+.faq-item summary::after { transform: rotate(90deg); }
+.faq-item[open] summary::after { display: none; }
+.faq-answer {
+  height: 46px;
+  padding-top: 3.7px;
+  border-bottom: 1px solid #a9a9aa;
+  color: var(--ink-3);
+  font-size: 14px;
+  line-height: 32px;
+  letter-spacing: -0.03px;
+}
+
+/* ============ CTA ============ */
+/* Figma: card 19:130 x359 y5373 1200x261, fill rgba(116,51,255,.49), 3px centred stroke that runs
+   from white (left) to translucent purple (right); title 19:115 y5424; text 19:117 y5484; button y5525 */
+.cta {
+  padding: 40px 0 30px;
+}
+.cta-card {
+  position: relative;
+  left: -1px;
+  height: 261px;
+  padding-top: 51px;
+  background: rgba(116, 51, 255, 0.49);
+  border-radius: var(--radius);
+  text-align: center;
+  color: #fff;
+}
+.cta-card::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border: 3px solid transparent;
+  border-radius: 21.5px;
+  background: linear-gradient(100deg, #fff 0%, #fff 12%, rgba(116, 51, 255, 0.3) 72%) border-box;
+  -webkit-mask: linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+.cta-card h2 {
+  font-size: 36px;
+  line-height: 43px;
+  letter-spacing: -0.038em;
+  color: #fff;
+}
+.cta-card h2 .light { font-weight: 300; }
+.cta-card h2 .medium { font-weight: 600; }
+.cta-card p {
+  margin: 17px 0 18px;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -1.03px;
+}
+.cta-card .btn-lg {
+  position: relative;
+  width: 214px;
+  height: 56px;
+  padding: 0 6px 0 33px;
+  justify-content: space-between;
+  gap: 0;
+  color: #000;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+
+/* ============ FOOTER ============ */
+/* Figma: brand 54:33 x360 y5723; headings 54:73 x1161 / 54:75 x1341 at y5704; rule 54:26 y5978; copyright y5997 */
+.site-footer {
+  padding: 40px 0 24px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 801px 180px 1fr;
+}
+.footer-brand { margin-top: 19px; }
+.footer-logo {
+  width: 155px;
+  height: 64px;
+  max-width: none;
+  margin-bottom: 24px;
+}
+.footer-brand p {
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0;
+  width: 360px;
+  margin-bottom: 24px;
+}
+.socials {
+  display: flex;
+  gap: 12px;
+}
+.socials a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  border: 1px solid #d3d3d3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0;
+  color: var(--purple);
+  transition: all 0.2s;
+}
+.socials a:hover {
+  background: var(--purple);
+  color: #fff;
+}
+.footer-col h4 {
+  color: var(--purple);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 43px;
+  letter-spacing: -0.06em;
+}
+.footer-col ul { margin-top: 1.6px; }
+.footer-col ul li { line-height: 32.33px; }
+.footer-col a {
+  color: var(--ink);
+  font-size: 16px;
+  letter-spacing: -0.04em;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--purple); }
+.footer-col address {
+  margin-top: 3px;
+  padding-left: 1px;
+  font-style: normal;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+.footer-bottom {
+  margin-top: 37px;
+}
+.footer-bottom::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: #e5e5e5;
+  margin-bottom: 18px;
+}
+.footer-bottom small {
+  display: block;
+  color: #7f7f7f;
+  font-family: 'Manrope', sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+  letter-spacing: 0;
+}
+.footer-bottom a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 1260px) {
+  .nav-wrap { gap: 12px; padding: 16px 24px; }
+  .nav-pill {
+    width: auto;
+    height: auto;
+    padding: 0;
+    background: none;
+  }
+  .main-nav a { width: auto; text-align: left; line-height: 1.5; }
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: #fff;
+    padding: 20px 24px;
+    gap: 16px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    margin-right: 0;
+  }
+  .main-nav.open { display: flex; }
+  .menu-toggle { display: flex; }
+  .site-header .btn { display: none; }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .better-grid { max-width: 100%; }
+  .geo-content { max-width: 100%; }
+  .geo-swirl { left: 10%; width: 90%; height: auto; aspect-ratio: 790 / 524; opacity: 0.4; }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+  }
+  .service-card--tehnicki,
+  .service-card--onpage,
+  .service-card--kons,
+  .service-card--copy,
+  .service-card--strat,
+  .service-card--offpage,
+  .service-card--lokalni {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .service-card { min-height: 200px; padding: 24px 24px 80px; }
+  .service-card h3,
+  .service-card p { position: static; width: auto; white-space: normal; }
+  .service-card p { margin-top: 10px; }
+  .service-arrow,
+  .service-card--accent .service-arrow { left: auto; top: auto; right: 20px; bottom: 20px; }
+  .service-card--accent { background-size: cover; border-radius: 20px; }
+  .process-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .process-card {
+    padding: 40px 24px;
+  }
+  .faq-card {
+    padding: 40px 24px;
+  }
+  .faq-item summary { height: auto; min-height: var(--row); padding-right: 28px; padding-bottom: 12px; }
+  .faq-answer { height: auto; line-height: 1.6; padding: 10px 0; }
+  .cta-card {
+    left: 0;
+    height: auto;
+    padding: 48px 24px;
+  }
+  .footer-brand p { width: auto; }
+  .footer-col address { white-space: normal; }
+}
+
+/* Fluid fallbacks for the fixed desktop (Figma 1920) measurements */
+@media (max-width: 1260px) {
+  .hero { padding: 96px 0 80px; }
+  .hero h1 { font-size: clamp(34px, 7vw, 64px); line-height: 1.1; margin: 0 auto 16px; }
+  .hero-cloud { top: -300px; }
+  .about { padding: 40px 0 80px; }
+  .about-title { font-size: clamp(24px, 4.4vw, 36px); line-height: 1.25; }
+  .wave-anchor { display: none; }
+  .better-seo { padding: 60px 0; }
+  .better-seo .section-title,
+  .process-card .section-title,
+  .services .section-title,
+  .geo-content .section-title,
+  .faq-card .section-title,
+  .cta-card h2 { font-size: clamp(28px, 5vw, 36px); line-height: 1.2; }
+  .process { padding: 40px 0 60px; }
+  .process-card { height: auto; padding: 48px 24px; }
+  .process-steps { flex-wrap: wrap; gap: 13px; }
+  .step-card { flex: 1 1 215px; height: auto; min-height: 238px; padding: 18.5px; }
+  .step-card:first-child { padding-left: 18.5px; }
+  .step-card:nth-child(n) p { width: auto; }
+  .step-card h3 { white-space: normal; }
+  .services { padding: 60px 0; }
+  .service-card { margin: 0; }
+  .service-card--accent { margin: 0; }
+  .service-card--onpage h3 { margin-left: 0; }
+  .geo { padding: 60px 0; overflow: hidden; }
+  .geo-swirl { top: 40px; }
+  .faq { padding: 40px 0 10px; }
+  .faq-card { padding-bottom: 40px; }
+  .site-footer { padding: 40px 0 24px; }
+  .footer-brand { margin-top: 0; }
+}
+
+@media (max-width: 560px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .process-steps {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    padding: 48px 0 72px;
+  }
+  .about,
+  .better-seo,
+  .services,
+  .geo,
+  .faq {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .btn-lg {
+    padding: 10px 18px 10px 24px;
+    font-size: 15px;
+  }
+  .btn-arrow {
+    width: 36px;
+    height: 36px;
+  }
+}
