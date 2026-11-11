@@ -1,14 +1,26 @@
 // Mobile menu toggle
 const menuToggle = document.getElementById('menuToggle');
 const mainNav = document.getElementById('mainNav');
+const siteHeader = document.querySelector('.site-header');
+
+const setMenu = (open) => {
+  siteHeader.classList.toggle('menu-open', open);
+  menuToggle.setAttribute('aria-expanded', String(open));
+};
 
 menuToggle?.addEventListener('click', () => {
-  mainNav.classList.toggle('open');
+  setMenu(!siteHeader.classList.contains('menu-open'));
 });
 
-// Close mobile menu when clicking a link
-mainNav?.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => mainNav.classList.remove('open'));
+// Close the menu after choosing a link, on outside click and on Escape
+siteHeader?.querySelectorAll('.nav-pill a').forEach(link => {
+  link.addEventListener('click', () => setMenu(false));
+});
+document.addEventListener('click', (e) => {
+  if (!siteHeader.contains(e.target)) setMenu(false);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') setMenu(false);
 });
 
 // FAQ: close others when one is opened (accordion behavior)
