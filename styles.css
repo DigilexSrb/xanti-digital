@@ -402,7 +402,7 @@ h1, h2, h3, h4 {
    text 13:197 y1639 (567w); process card starts at y2192 */
 .better-seo {
   position: relative;
-  padding: 80px 0 397px;
+  padding: 80px 0 318px;
   z-index: 2;
 }
 .better-seo .section-title {
@@ -621,7 +621,7 @@ h1, h2, h3, h4 {
    list 19:15 y4262 (x373, dots x360), closing text 19:19 y4365. Section starts at y3819. */
 .geo {
   position: relative;
-  padding: 200px 0 239px;
+  padding: 200px 0 139px;
 }
 /* Swirl 19:3: rendered Figma output (rotation + hue blend baked in), frame x840-1630, y3924-4448 */
 .geo-swirl {
@@ -896,6 +896,38 @@ h1, h2, h3, h4 {
 .footer-bottom a {
   color: inherit;
   text-decoration: underline;
+}
+
+/* ============ HIGHLIGHT CARD (home: "Šta dobijate..." and "Da li je Xanti Digital...") ============ */
+/* Not in the Figma home frame: added on request to make these two blocks stand out.
+   Style follows the glass text card of the second Figma frame. */
+.highlight-card {
+  padding: 24px 28px 26px;
+  border: 3px solid transparent;
+  border-radius: 21.5px;
+  background:
+    linear-gradient(rgba(246, 245, 252, 0.84), rgba(246, 245, 252, 0.84)) padding-box,
+    linear-gradient(104deg, #f9f7ff 0%, #efebff 8%, #e0d4ff 20%, #d7c5ff 43%, #d1bdff 59%, #d5c1ff 83%, #dfd1ff 100%) border-box;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.better-grid > .highlight-card { margin-top: 28px; }
+.geo-content .highlight-card { max-width: 540px; margin-top: 26px; }
+.better-seo .highlight-card .eyebrow,
+.geo-content .highlight-card .eyebrow {
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 34px;
+  letter-spacing: -0.035em;
+}
+.geo-content .highlight-card .eyebrow { color: var(--purple); }
+.geo-content .highlight-card .eyebrow + .muted { line-height: 24px; }
+.geo-content .highlight-card .dot-list { margin-bottom: 8px; }
+@media (max-width: 560px) {
+  .highlight-card { padding: 20px 20px 22px; }
+  .better-seo .highlight-card .eyebrow,
+  .geo-content .highlight-card .eyebrow { font-size: 24px; line-height: 30px; }
 }
 
 /* ============ INNER PAGES (usluge + service detail) ============ */
